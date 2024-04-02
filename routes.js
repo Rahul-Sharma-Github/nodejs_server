@@ -1,7 +1,12 @@
 // imports
 const express = require('express');
-const User = require('./user');
 const router = express.Router();
+
+// importing user model from user module
+const User = require('./user');
+
+
+// All CRUD operations
 
 // Create a new user
 router.post('/users', async (req, res) => {
@@ -11,7 +16,8 @@ router.post('/users', async (req, res) => {
 
   const { name, email, age } = req.body;
 
-  // the above line is similar to Below Line
+  // the above line is similar to Below 3 Lines
+
         // const name = req.body.name;
         // const email = req.body.email;
         // const age = req.body.age;
@@ -19,18 +25,21 @@ router.post('/users', async (req, res) => {
   try {
     // storing Single object in user variable
     const user = new User({ name, email, age });
-    // then saving the User Document object inside Database
+    // then saving the User Document object inside MongoDB Database
     await user.save();
+
     res.send(user);
   } catch (error) {
-    console.error(error);
+    console.error('error while Post Request = ',error);
     res.status(500).send(error);
   }
 });
 
+
 // Get all users
 router.get('/users', async (req, res) => {
   try {
+    // here we are Fetching all the Documents from users collection in Database
     const users = await User.find({});
     res.send(users);
   } catch (error) {
@@ -39,12 +48,16 @@ router.get('/users', async (req, res) => {
   }
 });
 
+
 // Update a user
 router.put('/users/:id', async (req, res) => {
+    // getting passed id and storing in id variable
   const { id } = req.params;
+    // getting new updated data and storing them inside related variables
   const { name, email, age } = req.body;
 
   try {
+    // after that finding document using specific id and updating it with new updated data
     const user = await User.findByIdAndUpdate(id, { name, email, age }, { new: true });
     res.send(user);
   } catch (error) {
@@ -53,11 +66,14 @@ router.put('/users/:id', async (req, res) => {
   }
 });
 
+
 // Delete a user
 router.delete('/users/:id', async (req, res) => {
+    // getting passed id
   const { id } = req.params;
 
   try {
+    // deleting a specific document by passed id
     const user = await User.findByIdAndDelete(id);
     res.send(user);
   } catch (error) {
@@ -66,4 +82,6 @@ router.delete('/users/:id', async (req, res) => {
   }
 });
 
+
+// exporting router
 module.exports = router ;
