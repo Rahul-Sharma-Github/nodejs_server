@@ -6,7 +6,7 @@ const router = express.Router();
 const Menu = require('./menuitems');
 
 
-// All MongoDB Database CRUD operations through API Endpoint using router object
+// All MongoDB Database Core CRUD operations through API Endpoint using router object
 
 // Create a new Menu Item
 router.post('/create-menu-item', async (req, res) => {
@@ -84,6 +84,16 @@ router.delete('/delete-menu-item/:id', async (req, res) => {
     res.status(500).send(error);
   }
 });
+
+
+// All MongoDB Database Advance CRUD operations through API Endpoint using router object
+
+// get all menu items filtered by Catagory
+
+
+
+
+
 
 
 // exporting router
