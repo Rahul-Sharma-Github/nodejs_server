@@ -7,6 +7,7 @@ const menuItemsSchema = new mongoose.Schema({
   itemprice: {type:Number},
   addonitemname: {type:String},
   addonitemprice: {type:Number},
+  description:{type:String},
   category:{type:String}
 });
 
