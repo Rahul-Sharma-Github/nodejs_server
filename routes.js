@@ -3,7 +3,7 @@ const express = require('express');
 const router = express.Router();
 
 // importing user model from user module
-const User = require('./user');
+const User = require('./menuitems');
 
 
 // All CRUD operations
