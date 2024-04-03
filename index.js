@@ -5,6 +5,8 @@ const bodyParser = require('body-parser');
 
 // importing and storing router object from routes module
 const routes = require('./routes');
+// this import will initiate the DB connection
+const db = require('./db');
 
 
 // creating express app

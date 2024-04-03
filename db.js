@@ -3,12 +3,9 @@ const mongoose = require('mongoose');
 
 
 // Establishing connection with MongoDB Local Database through connection String
-try {
-  await mongoose.connect('mongodb://localhost:27017/jumbo_foods_database', {});
-} catch (error) {
-  // handling error while initially connecting to database
-  handleError(error);
-}
+// And handling error while initially connecting to database
+mongoose.connect('mongodb://localhost:27017/jumbo_foods_database', {}).catch(error => handleError(error));
+
 
 
 // Getting connection instance into db variable
