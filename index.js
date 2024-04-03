@@ -3,7 +3,7 @@ const express = require('express');
 // importing body-parser middleware
 const bodyParser = require('body-parser');
 
-// importing routes module
+// importing and storing router object from routes module
 const routes = require('./routes');
 
 
@@ -19,6 +19,9 @@ app.use(bodyParser.json());
 
 // This line of code tells Express to use the routes middleware for all requests that are sent to the root path (/). 
 // The routes middleware is a function that is responsible for handling incoming requests and sending back responses.
+//
+// mounting the router object to the '/' path
+// now our express app will use this router object to handle all requests
 app.use('/', routes);
 
 

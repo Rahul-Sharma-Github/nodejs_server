@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 
 
 // Establishing connection with MongoDB Local Database through connection String
-mongoose.connect('mongodb://localhost:27017/my_database', {});
+mongoose.connect('mongodb://localhost:27017/jumbo_foods_database', {});
 
 // Getting connection instance into db variable
 const db = mongoose.connection;
