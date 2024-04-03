@@ -2,33 +2,36 @@
 const express = require('express');
 const router = express.Router();
 
-// importing user model from user module
-const User = require('./menuitems');
+// importing Menu model from menuitems module
+const Menu = require('./menuitems');
 
 
-// All CRUD operations
+// All MongoDB Database CRUD operations through API Endpoint using router object
 
-// Create a new user
-router.post('/users', async (req, res) => {
+// Create a new Menu Item
+router.post('/create-menu-item', async (req, res) => {
 
     // here we are getting passed data from req parameter as Object ( req.body ) [ from Client App ]
     // and storing each value of req.body object's property inside constant variables in sequence according to Schema and making a Single Object from them
 
-  const { name, email, age } = req.body;
+  const { itemname, itemprice, addonitemname, addonitemprice, description, category } = req.body;
 
-  // the above line is similar to Below 3 Lines
+  // the above line is similar to Below 6 Lines
 
-        // const name = req.body.name;
-        // const email = req.body.email;
-        // const age = req.body.age;
+        // const itemname = req.body.itemname;
+        // const itemprice = req.body.itemprice;
+        // const addonitemname = req.body.addonitemname;
+        // const addonitemprice = req.body.addonitemprice;
+        // const description = req.body.description;
+        // const category = req.body.category;
 
   try {
-    // storing Single object in user variable
-    const user = new User({ name, email, age });
-    // then saving the User Document object inside MongoDB Database
-    await user.save();
+    // storing Single object in menuitem variable
+    const menuitem = new Menu({ itemname, itemprice, addonitemname, addonitemprice, description, category});
+    // then saving the menuitem Document inside MongoDB Database
+    await menuitem.save();
 
-    res.send(user);
+    res.send(menuitem);
   } catch (error) {
     console.error('error while Post Request = ',error);
     res.status(500).send(error);
@@ -36,12 +39,12 @@ router.post('/users', async (req, res) => {
 });
 
 
-// Get all users
-router.get('/users', async (req, res) => {
+// Get all menu items
+router.get('/all-menu-items', async (req, res) => {
   try {
-    // here we are Fetching all the Documents from users collection in Database
-    const users = await User.find({});
-    res.send(users);
+    // here we are Fetching all the Documents from menu collection in Database
+    const allMenuItems = await Menu.find({});
+    res.send(allMenuItems);
   } catch (error) {
     console.error(error);
     res.status(500).send(error);
@@ -49,17 +52,17 @@ router.get('/users', async (req, res) => {
 });
 
 
-// Update a user
-router.put('/users/:id', async (req, res) => {
+// Update a menu item
+router.put('/update-menu-item/:id', async (req, res) => {
     // getting passed id and storing in id variable
   const { id } = req.params;
     // getting new updated data and storing them inside related variables
-  const { name, email, age } = req.body;
+  const { itemname, itemprice, addonitemname, addonitemprice, description, category } = req.body;
 
   try {
     // after that finding document using specific id and updating it with new updated data
-    const user = await User.findByIdAndUpdate(id, { name, email, age }, { new: true });
-    res.send(user);
+    const updatedMenuItem = await Menu.findByIdAndUpdate(id, { itemname, itemprice, addonitemname, addonitemprice, description, category }, { new: true });
+    res.send(updatedMenuItem);
   } catch (error) {
     console.error(error);
     res.status(500).send(error);
@@ -67,15 +70,15 @@ router.put('/users/:id', async (req, res) => {
 });
 
 
-// Delete a user
-router.delete('/users/:id', async (req, res) => {
+// Delete a menu item
+router.delete('/delete-menu-item/:id', async (req, res) => {
     // getting passed id
   const { id } = req.params;
 
   try {
     // deleting a specific document by passed id
-    const user = await User.findByIdAndDelete(id);
-    res.send(user);
+    const deletedMenuItem = await Menu.findByIdAndDelete(id);
+    res.send(deletedMenuItem);
   } catch (error) {
     console.error(error);
     res.status(500).send(error);
