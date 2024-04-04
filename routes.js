@@ -89,7 +89,18 @@ router.delete('/delete-menu-item/:id', async (req, res) => {
 // All MongoDB Database Advance CRUD operations through API Endpoint using router object
 
 // get all menu items filtered by Catagory
-
+router.get('/menu-items/:category',async (req, res) => {
+  // getting passed category
+  const { category } = req.params;
+  try{
+    // fetching menu items documents by category
+    const menuItemsByCategory = await Menu.find({"category":category});
+    res.send(menuItemsByCategory);
+  }catch (error) {
+    console.error(error);
+    res.status(500).send(error);
+}
+});
 
 
 
