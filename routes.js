@@ -1,9 +1,12 @@
 // imports
 const express = require('express');
+// Getting Router class Object/Instance
 const router = express.Router();
 
 // importing Menu model from menuitems module
 const Menu = require('./menuitems');
+
+
 
 
 // All MongoDB Database Core CRUD operations through API Endpoint using router object
@@ -11,8 +14,8 @@ const Menu = require('./menuitems');
 // Create a new Menu Item
 router.post('/create-menu-item', async (req, res) => {
 
-    // here we are getting passed data from req parameter as Object ( req.body ) [ from Client App ]
-    // and storing each value of req.body object's property inside constant variables in sequence according to Schema and making a Single Object from them
+  // here we are getting passed data from req parameter as Object ( req.body ) [ from Client App ]
+  // and storing each value of req.body object's property inside constant variables in sequence according to Schema and making a Single Object from them
 
   const { itemname, itemprice, addonitemname, addonitemprice, description, category } = req.body;
 
@@ -107,5 +110,5 @@ router.get('/menu-items/:category',async (req, res) => {
 
 
 
-// exporting router
+// exporting router object
 module.exports = router ;
