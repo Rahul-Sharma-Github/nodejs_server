@@ -46,7 +46,7 @@ router.get('/all-menu-items', async (req, res) => {
     const allMenuItems = await Menu.find({});
     res.send(allMenuItems);
   } catch (error) {
-    console.error(error);
+    console.error('error while Get Request ( Fetching all menu items ) = ',error);
     res.status(500).send(error);
   }
 });
@@ -64,7 +64,7 @@ router.put('/update-menu-item/:id', async (req, res) => {
     const updatedMenuItem = await Menu.findByIdAndUpdate(id, { itemname, itemprice, addonitemname, addonitemprice, description, category }, { new: true });
     res.send(updatedMenuItem);
   } catch (error) {
-    console.error(error);
+    console.error('error while Put Request ( updating menu item ) = ',error);
     res.status(500).send(error);
   }
 });
@@ -80,7 +80,7 @@ router.delete('/delete-menu-item/:id', async (req, res) => {
     const deletedMenuItem = await Menu.findByIdAndDelete(id);
     res.send(deletedMenuItem);
   } catch (error) {
-    console.error(error);
+    console.error('error while Delete Request ( Delete menu item ) = ',error);
     res.status(500).send(error);
   }
 });
@@ -97,7 +97,7 @@ router.get('/menu-items/:category',async (req, res) => {
     const menuItemsByCategory = await Menu.find({"category":category});
     res.send(menuItemsByCategory);
   }catch (error) {
-    console.error(error);
+    console.error('error while Get Request ( Fetching all menu items by Category ) = ',error);
     res.status(500).send(error);
 }
 });
