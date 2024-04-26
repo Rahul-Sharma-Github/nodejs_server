@@ -2,6 +2,10 @@
 const express = require('express');
 // importing body-parser middleware
 const bodyParser = require('body-parser');
+//
+var cors = require("cors");
+
+
 
 // importing and storing router object from routes module
 const routes = require('./routes');
@@ -18,7 +22,8 @@ const app = express();
 // it will handle the POST and PUT request that contain JSON data
 // This middleware will parse any JSON data that is sent in the body of an HTTP request ( like - POST, PUT ) and make it available on the req.body object
 app.use(bodyParser.json());
-
+//
+app.use(cors());
 // This line of code tells Express to use the routes middleware for all requests that are sent to the root path (/). 
 // The routes middleware is a function that is responsible for handling incoming requests and sending back responses.
 //
