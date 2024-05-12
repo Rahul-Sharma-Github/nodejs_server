@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 
 // Establishing connection with MongoDB Local Database through connection String
 // And handling error while initially connecting to database
-mongoose.connect('mongodb://127.0.0.1:27017/jumbo_foods_database', {directConnection:true,useUnifiedTopology: true});
+mongoose.connect('mongodb://localhost:27017/jumbo_foods_database', {});
 
 
 
