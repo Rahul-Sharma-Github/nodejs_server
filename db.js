@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 
 // Establishing connection with MongoDB Local Database through connection String
 // And handling error while initially connecting to database
-mongoose.connect('mongodb://localhost:27017/jumbo_foods_database', {});
+mongoose.connect('mongodb+srv://rahulsharma3258:_sK%24X9eEsAQRt7%23@clusterforpractice.cxcwqje.mongodb.net/', {});
 
 
 
